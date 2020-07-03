@@ -38,7 +38,7 @@ public class DuplicateZeros {
 
         int currIndex = arr.length -1;
         while(length >= 0 && count >=0 ) {
-            if()
+
         }
     }
 }
