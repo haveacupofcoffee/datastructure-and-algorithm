@@ -25,7 +25,37 @@ package com.leetcode.array.delete;
  * It doesn't matter what values are set beyond the returned length.
  */
 public class RemoveElement {
+    /**
+     * Use two pointers, one scan from left to right, if the value of the Array is equal to the given value,
+     * then scan from right to left, find the rightmost index of the array whose value is not equal to the given value, then switch with the left index(don't need to switch, just assign the
+     * value of the right to the left.
+     * This way can't guarantee the order of the
+     * @param nums
+     * @param val
+     * @return
+     */
     public static int removeElement(int[] nums, int val) {
-        return 0;
+
+        int left = 0, right = nums.length -1 ;
+        while(left <= right) {
+            //if the value of the left pointer equals to the given value, then find the rightmost index whose value is not equal to given value
+            if(nums[left] == val) {
+                // = edge case [1] val = 1
+                while(right >= left) {
+                    //find the rightmost index, assign the right most value of the array which is not equal to the given value to the left
+                    if(nums[right] != val) {
+                        nums[left] = nums[right];
+                        left++;
+                        right--;
+                        break;
+                    }
+                    right--;
+                }
+            }else {
+                left++;
+            }
+        }
+
+        return left;
     }
 }
