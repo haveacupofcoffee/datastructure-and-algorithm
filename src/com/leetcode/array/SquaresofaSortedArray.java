@@ -32,7 +32,6 @@ public class SquaresofaSortedArray {
                 square = A[left] * A[left];
                 left++;
             }
-
             squareArray[currIndexOfSquareArray--] = square;
         }
 
