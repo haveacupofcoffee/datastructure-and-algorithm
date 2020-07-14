@@ -22,21 +22,31 @@ package com.leetcode.array;
  */
 public class DuplicateZeros {
     public static void duplicateZeros(int[] arr) {
-        int count = 0, length = 0;
-        while(length < arr.length) {
-            if(arr[length] == 0) {
+        //[1,5,2,0,6,8,0,6,0]
+        int count = 0;
+        int length = arr.length - 1;
+
+        for(int left = 0; left<= length-count; left++) {
+            if(arr[left] == 0) {
+                if(left == length - count) {
+                    arr[length] = 0;
+                    length--;
+                    break;
+                }
                 count++;
             }
+        }
 
-            if(count + length >= arr.length - 1) {
-                break;
+        int last = length - count;
+        for(int i=last; i>=0; i--) {
+            if(arr[i] == 0) {
+                arr[i+count] = 0;
+                count--;
+                arr[i+count] = 0;
+            }else {
+                arr[i+count] = arr[i];
             }
-            length++;
         }
 
-        int currIndex = arr.length -1;
-        while(length >= 0 && count >=0 ) {
-
-        }
     }
 }
