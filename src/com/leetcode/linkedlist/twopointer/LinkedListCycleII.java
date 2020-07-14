@@ -23,6 +23,7 @@ public class LinkedListCycleII {
     }
 
     //use two pointers
+    // TODO: 2020-07-14 has problem, need to recheck 
     public static ListNode detectCycleWithTwoPointer(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;

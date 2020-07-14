@@ -19,8 +19,36 @@ import com.leetcode.linkedlist.common.ListNode;
  * Could you do this in one pass?
  */
 public class RemoveNthNodeFromEndofList {
+    //two pass
+    // TODO: 2020-07-14 Need to do it in one pass
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         if(head == null ) return null;
+        int size = 0;
+        ListNode walker = head;
+        while(walker != null) {
+            size++;
+            walker = walker.next;
+        }
+
+        //edge case, if delete the head
+        if(n == size) {
+            head = head.next;
+            return head;
+        }
+
+        int index = 1;
+        walker = head;
+        while(walker != null) {
+            if(index == size - n) {
+                walker.next = walker.next.next;
+                break;
+            }
+            index++;
+            walker = walker.next;
+        }
+
+        return head;
+
         
     }
 }
