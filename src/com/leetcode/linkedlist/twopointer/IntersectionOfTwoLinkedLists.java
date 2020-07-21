@@ -2,6 +2,9 @@ package com.leetcode.linkedlist.twopointer;
 
 import com.leetcode.linkedlist.common.ListNode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Write a program to find the node at which the intersection of two singly linked lists begins.
  * For example, the following two linked lists:
@@ -32,18 +35,78 @@ import com.leetcode.linkedlist.common.ListNode;
  * Your code should preferably run in O(n) time and use only O(1) memory.
  */
 public class IntersectionOfTwoLinkedLists {
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        //edge case
-        if(headA == null || headB == null) return null;
-
-        ListNode walkerA = headA;
-        ListNode walkerB = headB;
-
-        ListNode mergeNode = null;
-
-        while(walkerA != null && walkerB != null) {
-
+    /**
+     * Time Complexity : O(m+n), Space Complexity : O(m) or O(n)
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public ListNode getIntersectionNodeWithHashTable(ListNode headA, ListNode headB) {
+        Set<ListNode> aSet = new HashSet<>();
+        ListNode walker = headA;
+        while(walker != null) {
+            aSet.add(walker);
+            walker = walker.next;
         }
+
+        walker = headB;
+        while(walker != null) {
+            if(aSet.contains(walker)) {
+                break;
+            }
+            walker = walker.next;
+        }
+
+        return walker;
+    }
+
+    /** Time Complexity : O(m+n), Space Complexity O(1)
+     * Maintain two pointers pA and pB initialized at the head of A and B, respectively. Then let them both traverse
+     * through the lists, one node at a time.
+     * When pA reaches the end of a list, then redirect it to the head of B (yes, B, that's right.); similarly when
+     * pB reaches the end of a list, redirect it the head of A.
+     * If at any point pA meets pB, then pA/pB is the intersection node.
+     * To see why the above trick would work, consider the following two lists: A = {1,3,5,7,9,11} and B = {2,4,9,11},
+     * which are intersected at node '9'. Since B.length (=4) < A.length (=6), pB would reach the end of the merged
+     * list first, because pB traverses exactly 2 nodes less than pA does. By redirecting pB to head A, and pA
+     * to head B, we now ask pB to travel exactly 2 more nodes than pA would. So in the second iteration, they are
+     * guaranteed to reach the intersection node at the same time.
+     * If two lists have intersection, then their last nodes must be the same one. So when pA/pB reaches the end of
+     * a list, record the last element of A/B respectively. If the two last elements are not the same one, then the two
+     * lists have no intersections.
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public ListNode getIntersectionNodeWithTwoPointer(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) return null;
+        ListNode pA = headA;
+        ListNode pB = headB;
+
+        while (pA != null) {
+            pA = pA.next;
+            pB = pB.next;
+            if(pB == null) {
+                pB = headA;
+            }
+        }
+
+        pA = headB;
+        while(pA != null) {
+
+            if(pA == pB) {
+                return pA;
+            }
+
+            pA = pA.next;
+            pB = pB.next;
+            if(pB == null) {
+                pB = headA;
+            }
+        }
+
+        return null;
+
 
     }
 }
