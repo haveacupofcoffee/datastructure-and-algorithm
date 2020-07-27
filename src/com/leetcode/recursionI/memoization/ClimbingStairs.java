@@ -28,6 +28,12 @@ import java.util.Map;
  * Constraints:
  *
  * 1 <= n <= 45
+ *
+ * for k steps
+ * if k = 1 f(k) = 1
+ * if k = 2 f(k) = 2
+ *  else :
+ *  f(k) is all ways of f(k-1) + f(k-2) (f(k-1) ways each of them plus 1 step will be k steps or f(k-2), each way plus 2 steps it's k steps)
  */
 public class ClimbingStairs {
 
