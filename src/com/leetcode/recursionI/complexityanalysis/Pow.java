@@ -23,27 +23,105 @@ package com.leetcode.recursionI.complexityanalysis;
  */
 // TODO: 2020-07-22 didn't do it right first time, can't pass all tests in leetcode, has stack overflow problem 
 public class Pow {
-    //non tail recursion
+    //non tail recursion,StackOverflowError on leetcode
     public static double myPowNonTailRecursion(double x, int n) {
-        if(n == 0) {
-            return 1;
+
+        long N = n; //Integer.MIN_VALUE to Integer.MAX_VALUE overflow
+        if(N < 0) {
+            x = 1 / x;
+            N = -N;
         }
 
-        return  n > 0 ? x* myPowNonTailRecursion(x, n-1) : 1/(x*myPowNonTailRecursion(x, Math.abs(n)-1));
+        return  helperNonTailRecursion(x, N);
+    }
 
+    private static double helperNonTailRecursion(double x, long n) {
+        if(n == 0) {
+            return 1.0;
+        }
+
+        return x * helperNonTailRecursion(x, n-1);
     }
 
 
-    //non tail recursion
+    //non tail recursion, StackOverflowError on leetcode
     public static double myPowTailRecursion(double x, int n) {
-        if(n == 0) return 1;
+        long N = n; //Integer.MIN_VALUE to Integer.MAX_VALUE overflow
+        if(N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
 
-        return n > 0 ? helperTailRecursion(x, n, 1) : 1 / helperTailRecursion(x, Math.abs(n) -1, 1);
+        return helperTailRecursion(x, N, 1.0);
     }
 
-    private static double helperTailRecursion(double x, int n, double preResult) {
+    private static double helperTailRecursion(double x, long n, double preResult) {
         if( n == 0) return preResult;
 
         return helperTailRecursion(x, n-1, x * preResult);
+    }
+
+    public static double myPowBruteForce(double x, int n) {
+        if(n == 0) return 1.0;
+        long N = n;
+
+        if(N < 0) {
+            x = 1/x;
+            N = -N;
+        }
+
+        double result = 1.0;
+
+        for(int i=0; i<N; i++) {
+            result= result * x;
+        }
+
+        return result;
+    }
+
+    public static double fastPowerRecursion(double x, int n) {
+        long N = n;
+
+        if(N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+
+        return helperFastPowerRecursion(x, N);
+    }
+
+    private static double helperFastPowerRecursion(double x, long n) {
+        if(n == 0) return 1.0;
+
+        double half = helperFastPowerRecursion(x, n / 2);
+
+        if(n % 2 == 0) {
+            return half * half;
+        }else {
+            return half * half * x;
+        }
+    }
+
+    public static double fastPowerIteration(double x, int n) {
+        if(n == 0 ) return 1.0;
+
+        long N = n;
+        if(N < 0 ) {
+            x = 1 / x;
+            N = -N;
+        }
+
+        double result = 1.0;
+        double currResult = x;
+
+        for(long i = N; i > 0; i /= 2) {
+            if(i % 2 == 1) {
+                result = result * currResult;
+            }
+
+            currResult = currResult * currResult;
+        }
+
+        return result;
     }
 }

@@ -36,11 +36,12 @@ import java.util.List;
 public class KthSymbolInGrammar {
 
     public static int kthGrammar(int N, int K) {
+        if(N==1) return 0;
         int capacity = getSize(N);
         List<Integer> row = new ArrayList<>(capacity);
         row.add(0);
 
-        for(int i=2; i<=N; i++) {
+        for(int i=2; i<N; i++) {
             int lastRowSize = getSize(i-1);
             for(int j  = 0; j < lastRowSize; j++) {
                 if(row.get(j) == 0) {
@@ -50,7 +51,15 @@ public class KthSymbolInGrammar {
                 }
             }
         }
-        return row.get(K-1);
+        int result = 0;
+        if(K > getSize(N-1) & K >= N) {
+            K = K - getSize(N -1);
+            result = row.get(K-1) == 0 ? 1: 0;
+        }else {
+            result = row.get(K-1);
+        }
+
+        return result;
     }
 
     private static int getSize(int n) {

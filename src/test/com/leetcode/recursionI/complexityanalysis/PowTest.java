@@ -79,4 +79,14 @@ public class PowTest {
 
         assertEquals(expect,Pow.myPowTailRecursion(input,n),5);
     }
+
+    @Test
+    public void myPowBruteForce() {
+        double input = 1.00000;
+        int n = 2147483647;
+
+        double expcet = 1.00000;
+
+        assertEquals(expcet, Pow.myPowBruteForce(input, n), 5);
+    }
 }
