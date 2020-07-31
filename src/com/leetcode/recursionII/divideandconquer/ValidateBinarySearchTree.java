@@ -33,22 +33,29 @@ import com.leetcode.recursionII.common.TreeNode;
  * Explanation: The root node's value is 5 but its right child's value is 4.
  */
 public class ValidateBinarySearchTree {
-    public boolean isValidBST(TreeNode root) {
-        return helper(root);
+    //recursively
+    public boolean isValidBSTByRecursion(TreeNode root) {
+        return helper(root, null, null);
     }
 
 
-    private boolean helper(TreeNode root ) {
+    private boolean helper(TreeNode root, Integer lower, Integer upper ) {
         //base case
         if(root == null) return true;
 
-        if(root.left != null && root.left.val > root.val) return false;
-        if(root.right != null && root.right.val < root.val) return false;
+        int val = root.val;
 
-        if(!helper(root.left)) return false;
-        if(!helper(root.right)) return false;
+        if(upper != null && val >= upper) return false;
+        if(lower != null && val <= lower) return false;
+
+        if(!helper(root.left, lower, val)) return false;
+        if(!helper(root.right, val, upper)) return false;
 
         return true;
+
+    }
+
+    public boolean isValidBSTByIteration(TreeNode root) {
 
     }
 }
