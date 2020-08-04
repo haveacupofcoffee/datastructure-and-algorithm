@@ -56,6 +56,6 @@ public class ValidateBinarySearchTree {
     }
 
     public boolean isValidBSTByIteration(TreeNode root) {
-
+        return false;
     }
 }
