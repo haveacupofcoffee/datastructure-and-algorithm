@@ -3,7 +3,9 @@ package com.leetcode.binarytree.solveproblemsrecursively;
 import com.leetcode.binarytree.embed.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class SymmetricTree {
     public boolean isSymmetric(TreeNode root) {
@@ -22,20 +24,34 @@ public class SymmetricTree {
     public boolean isSymmetriciteratively(TreeNode root) {
         if(root == null) return true;
 
-        List<TreeNode> leftList = new ArrayList<>();
-        List<TreeNode> rightList = new ArrayList<>();
-        leftList.add(root.left);
-        rightList.add(root.right);
+        Queue<TreeNode> leftQueue = new LinkedList<>();
+        Queue<TreeNode> rightQueue = new LinkedList<>();
+        leftQueue.offer(root.left);
+        rightQueue.offer(root.right);
 
-        while(!leftList.isEmpty()) {
-            int size = leftList.size();
-            for(int i= 0, j = size -1; i<size; i++, j--) {
+        while(!leftQueue.isEmpty()) {
+            int size = leftQueue.size();
+            for(int i=0; i < size; i++) {
+                TreeNode node = leftQueue.poll();
+                TreeNode symmetricNode = rightQueue.poll();
+                if(node == null && symmetricNode == null) continue;
+                if(node == null || symmetricNode == null) return false;
+                if(node.val != symmetricNode.val) return false;
+                if(node != null) {
+                    leftQueue.offer(node.left);
+                    leftQueue.offer(node.right);
+                }
+
+                if(symmetricNode != null) {
+                    rightQueue.offer(symmetricNode.right);
+                    rightQueue.offer(symmetricNode.left);
+                }
 
             }
 
         }
 
-        return false;
+        return true;
 
     }
 }
