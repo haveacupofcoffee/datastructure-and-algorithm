@@ -3,6 +3,7 @@ package com.leetcode.binarytree.conclusion;
 import com.leetcode.binarytree.embed.TreeNode;
 import sun.awt.image.ImageWatched;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,8 +29,69 @@ import java.util.Queue;
  */
 public class SerializeAndDeserializeBinaryTree {
 
-    // Encodes a tree to a single string.
+/*    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+
+              if (root == null) return "";
+
+        StringBuffer stringBuffer = new StringBuffer();
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = queue.poll();
+                if (cur != null) {
+                    stringBuffer.append(cur.val + ",");
+                    queue.offer(cur.left);
+                    queue.offer(cur.right);
+                } else {
+                    stringBuffer.append("null,");
+                }
+            }
+        }
+
+        return stringBuffer.deleteCharAt(stringBuffer.length()-1).toString();
+
+
+    }*/
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        if ("".equals(data)) return null;
+        String[] nodesArray = data.split(",");
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        TreeNode head= new TreeNode(Integer.valueOf(nodesArray[0]));
+        queue.offer(head);
+        int childLevelIndex = 1;
+
+        while(!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            if(cur != null) {
+                TreeNode leftNode = "null".equals(nodesArray[childLevelIndex]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex]));
+                TreeNode rightNode = "null".equals(nodesArray[childLevelIndex + 1]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex + 1]));
+
+                childLevelIndex += 2;
+
+                queue.offer(leftNode);
+                queue.offer(rightNode);
+
+                cur.left = leftNode;
+                cur.right = rightNode;
+            }
+        }
+
+        return head;
+
+    }
+
+
+
+    public String serialize2(TreeNode root) {
 
         if (root == null) return "[]";
 
@@ -40,7 +102,6 @@ public class SerializeAndDeserializeBinaryTree {
 
         while (!queue.isEmpty()) {
             int size = queue.size();
-            int count = 0;
 
             for (int i = 0; i < size; i++) {
                 TreeNode cur = queue.poll();
@@ -49,27 +110,17 @@ public class SerializeAndDeserializeBinaryTree {
                     queue.offer(cur.left);
                     queue.offer(cur.right);
                 } else {
-                    queue.offer(null);
-                    queue.offer(null);
-                    count++;
                     stringBuffer.append("null,");
                 }
             }
-
-            if (count == size) {
-                stringBuffer.substring(0, stringBuffer.length() - count * "null,".length());
-            }
-
         }
 
-        stringBuffer.append("]");
-        return stringBuffer.toString();
-
+        return stringBuffer.deleteCharAt(stringBuffer.length()-1).append("]").toString();
 
     }
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
+    public TreeNode deserialize2(String data) {
         if ("[]".equals(data)) return null;
         String[] nodesArray = data.substring(1, data.length() - 1).split(",");
         Queue<TreeNode> queue = new LinkedList<>();
@@ -80,12 +131,15 @@ public class SerializeAndDeserializeBinaryTree {
 
         while(!queue.isEmpty()) {
             TreeNode cur = queue.poll();
-            TreeNode leftNode = "null".equals(nodesArray[childLevelIndex]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex]));
-            childLevelIndex++;
-            TreeNode rightNode = "null".equals(nodesArray[childLevelIndex]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex]));
-            queue.offer(leftNode);
-            queue.offer(rightNode);
             if(cur != null) {
+                TreeNode leftNode = "null".equals(nodesArray[childLevelIndex]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex]));
+                TreeNode rightNode = "null".equals(nodesArray[childLevelIndex + 1]) == true ? null : new TreeNode(Integer.valueOf(nodesArray[childLevelIndex + 1]));
+
+                childLevelIndex += 2;
+
+                queue.offer(leftNode);
+                queue.offer(rightNode);
+
                 cur.left = leftNode;
                 cur.right = rightNode;
             }

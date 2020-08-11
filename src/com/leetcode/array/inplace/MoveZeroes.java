@@ -32,6 +32,22 @@ public class MoveZeroes {
         }
     }
 
+
+    /**
+     * swap with 0
+     * @param nums
+     */
+    public static void moveZeroesTwoPinters2(int[] nums) {
+        int j=0;
+        for(int i=0; i<nums.length; i++) {
+            if(nums[i] != 0) {
+                nums[j] = nums[i];
+                nums[i] = 0 ;
+                j++;
+            }
+        }
+    }
+
     public static void moveZeroesTwoPointer(int[] nums) {
         int left = 0, right = 1;
         while(right < nums.length && left < nums.length) {
@@ -51,6 +67,28 @@ public class MoveZeroes {
                 right++;
                 left++;
             }
+        }
+    }
+
+    public static void moveZeroesTwoPointerOptimize(int[] nums) {
+        int left = 0;
+
+        while(left < nums.length) {
+            if(nums[left] == 0) {
+                int right = left + 1;
+                while (right<nums.length) {
+                    if(nums[right] != 0) {
+                        nums[left] = nums[right];
+                        nums[right] = 0;
+                        break;
+                    }else {
+                        right++;
+                    }
+
+                }
+
+             }
+            left++;
         }
     }
 }
