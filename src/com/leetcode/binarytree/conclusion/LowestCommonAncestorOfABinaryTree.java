@@ -4,27 +4,46 @@ import com.leetcode.binarytree.embed.TreeNode;
 
 public class LowestCommonAncestorOfABinaryTree {
 
-    int lca = Integer.MAX_VALUE;
+    TreeNode ans  = null;
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null) return null;
-
-        return null;
+        helper(root, p, q);
+        return ans;
     }
 
     private boolean helper(TreeNode node, TreeNode p, TreeNode q) {
 
         if(node == null) return false;
 
-        if(node == p || node == q) return true;
+        int mid = (node == p || node == q)? 1:0;
 
-        boolean findNodes = helper(node.left, p, q) || helper(node.right, p, q);
+        int left = helper(node.left,p,q)? 1:0;
 
-        if(!findNodes) return false;
+        int right = helper(node.right, p, q)? 1: 0;
 
-        lca = Math.min(node.val, lca);
+        if(mid + left + right >= 2) {
+            ans = node;
+        }
 
-        return true;
+        return mid + left + right > 0;
+
+    }
+
+
+    private TreeNode helper2(TreeNode node, TreeNode p, TreeNode q) {
+
+        if(node == null) return  null;
+
+        if(node == p || node == q) return node;
+
+        TreeNode ancestorInLeftSubtree = helper2(node.left, p, q);
+        TreeNode ancestorInRightSubtree = helper2(node.right, p, q);
+
+        if(ancestorInLeftSubtree != null && ancestorInRightSubtree != null) {
+            return node;
+        }
+
+        return (ancestorInLeftSubtree != null) ? ancestorInLeftSubtree : ancestorInRightSubtree;
 
     }
 }

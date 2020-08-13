@@ -65,4 +65,36 @@ public class KthSymbolInGrammar {
     private static int getSize(int n) {
         return (int)Math.pow(2, n-1);
     }
+
+
+    public static int kthGrammar2(int N, int K) {
+
+        if(N == 1) return 0;
+
+        if(K <= 1 << (N-2)) {
+            return kthGrammar2(N-1, K);
+        }else {
+            int parent = kthGrammar2(N-1, (K-1)/2 + 1);
+            if(parent == 0) {
+                return 1 - K % 2;
+            }else {
+                return K % 2;
+            }
+        }
+
+    }
+
+    public static int kthGrammar3(int N, int K) {
+
+        if(N == 1) return 0;
+
+        if(K <= 1 << (N-2)) {
+            return kthGrammar3(N-1, K);
+        }else {
+            return 1 - kthGrammar3(N-1, (K - 1 << N-2));
+        }
+
+    }
+
+
 }
