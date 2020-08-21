@@ -20,7 +20,7 @@ import java.util.Queue;
  * Output: 2
  * Explanation: 13 = 4 + 9.
  */
-// TODO: 2020-08-21  Need to read the article 
+// TODO: 2020-08-21  Need to read the article
 public class PerfectSquares {
 
     //from n to 0
