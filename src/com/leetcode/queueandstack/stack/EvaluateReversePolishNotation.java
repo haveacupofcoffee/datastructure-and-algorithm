@@ -1,5 +1,9 @@
 package com.leetcode.queueandstack.stack;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * Evaluate the value of an arithmetic expression in Reverse Polish Notation.
  *
@@ -34,6 +38,40 @@ package com.leetcode.queueandstack.stack;
  */
 public class EvaluateReversePolishNotation {
     public int evalRPN(String[] tokens) {
-        
+        Stack<Integer> stack = new Stack<>();
+        Set<String> operators = new HashSet<>();
+        operators.add("+");
+        operators.add("-");
+        operators.add("*");
+        operators.add("/");
+
+        int result = 0;
+
+        for(int i=0; i<tokens.length; i++) {
+            if(operators.contains(tokens[i])) {
+                int op2 = stack.pop();
+                int op1 = stack.pop();
+                result = helper(op1,op2, tokens[i]);
+                stack.push(result);
+            }else {
+                stack.push(Integer.parseInt(tokens[i]));
+            }
+        }
+
+        return stack.pop();
     }
+
+    private int helper(int op1, int op2, String operator) {
+        if("+".equals(operator)) {
+            return op1 + op2;
+        }else if("-".equals(operator)) {
+            return op1 - op2;
+        }else if("*".equals(operator)) {
+            return op1 * op2;
+        }else{
+            return op1 / op2;
+        }
+    }
+
+
 }
