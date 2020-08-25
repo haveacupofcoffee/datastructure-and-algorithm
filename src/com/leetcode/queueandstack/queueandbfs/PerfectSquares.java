@@ -3,8 +3,7 @@ package com.leetcode.queueandstack.queueandbfs;
 import sun.awt.image.ImageWatched;
 
 import java.net.Inet4Address;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
@@ -24,7 +23,7 @@ import java.util.Queue;
 public class PerfectSquares {
 
     //from n to 0
-    public int numSquares(int n) {
+/*    public int numSquares(int n) {
 
         if(n < 4) return n;
 
@@ -55,5 +54,62 @@ public class PerfectSquares {
 
         return ans;
 
+    }*/
+
+    Map<Integer, Integer> map = new HashMap<>();
+
+    //recursively
+    public int numSquares(int n) {
+
+        if (n < 4) {
+            map.put(n, n);
+            return n;
+        }
+
+        if (n == 4) {
+            map.put(4, 1);
+            return 1;
+        }
+
+        if (map.containsKey(n)) {
+            return map.get(n);
+        }
+
+        int ans = Integer.MAX_VALUE;
+        int square = (int) Math.sqrt(n);
+
+        for (int i = 1; i <= square; i++) {
+            int result = numSquares(n - i * i) + 1;
+            ans = Math.min(ans, result);
+        }
+
+        map.put(n, ans);
+        return ans;
     }
+
+
+    public int numSquaresIterative(int n) {
+        if (n < 4) return n;
+        int[] dp = new int[n + 1];
+        int i = 0;
+        for (; i < 4; i++) {
+            dp[i] = i;
+        }
+
+        dp[i] = 1;
+
+        int numSquare = Integer.MAX_VALUE;
+
+        for (; i <= n; i++) {
+            int square = (int) Math.sqrt(i);
+            for (int j = 1; j <= square; j++) {
+                numSquare = Math.min(numSquare, dp[i - j * j] + 1);
+            }
+            dp[i] = numSquare;
+        }
+
+        return dp[n];
+    }
+
+
 }
