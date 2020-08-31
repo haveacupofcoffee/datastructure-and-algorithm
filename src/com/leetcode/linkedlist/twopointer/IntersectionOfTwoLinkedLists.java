@@ -97,16 +97,13 @@ public class IntersectionOfTwoLinkedLists {
             if(pA == pB) {
                 return pA;
             }
-
             pA = pA.next;
             pB = pB.next;
             if(pB == null) {
                 pB = headA;
             }
         }
-
         return null;
-
 
     }
 }
