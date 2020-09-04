@@ -1,5 +1,6 @@
 package com.leetcode.queueandstack.queueandbfs;
 
+import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
 import sun.awt.image.ImageWatched;
 
 import java.net.Inet4Address;
@@ -109,6 +110,83 @@ public class PerfectSquares {
         }
 
         return dp[n];
+    }
+
+
+    public int numSquaresBFS(int n) {
+
+        if( n < 4) return n;
+
+        Queue<Integer> queue = new LinkedList<>();
+        int ans = 0;
+
+        Set<Integer> squareNumbers = new HashSet<>();
+
+        for (int i=1; i*i<=n; i++) {
+            squareNumbers.add(i*i);
+        }
+
+        queue.offer(n);
+
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            ans += 1;
+
+            for(int i=0; i<size; i++) {
+                int curr = queue.poll();
+                if(squareNumbers.contains(curr)) return ans;
+                int sqrtOfCurr = (int)Math.sqrt(curr);
+                for(int j=sqrtOfCurr; j>=1; j--) {
+                    queue.offer(curr - j * j);
+                }
+            }
+        }
+
+        return ans;
+
+
+    }
+
+
+    public int numSquaresBFSOpt(int n) {
+
+        if( n < 4) return n;
+
+        Queue<Integer> queue = new LinkedList<>();
+        int ans = 0;
+
+        Set<Integer> squareNumbers = new HashSet<>();
+        Set<Integer> possibleAns = new HashSet<>();
+
+        for (int i=1; i*i<=n; i++) {
+            squareNumbers.add(i*i);
+        }
+
+        queue.offer(n);
+        possibleAns.add(n);
+
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            ans += 1;
+
+            for(int i=0; i<size; i++) {
+                int curr = queue.poll();
+                if(squareNumbers.contains(curr)) return Math.min(Collections.min(possibleAns), ans);
+                if(curr < 4) {
+                    possibleAns.add(ans + curr  -1);
+                }else {
+                    int sqrtOfCurr = (int)Math.sqrt(curr);
+                    for(int j=sqrtOfCurr; j>1; j--) {
+                        queue.offer(curr - j * j);
+                    }
+                }
+
+            }
+        }
+
+        return Collections.min(possibleAns);
+
+
     }
 
 
