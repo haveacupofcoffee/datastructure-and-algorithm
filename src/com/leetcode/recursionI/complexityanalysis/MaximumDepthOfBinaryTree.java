@@ -25,7 +25,6 @@ public class MaximumDepthOfBinaryTree {
     public int maxDepthNonTailRecursion(TreeNode root) {
         //base case
         if(root == null) return 0;
-
         return Math.max(1+ maxDepthNonTailRecursion(root.left), 1+maxDepthNonTailRecursion(root.right));
     }
 
