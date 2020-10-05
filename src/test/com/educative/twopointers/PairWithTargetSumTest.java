@@ -3,7 +3,7 @@ package test.com.educative.twopointers;
 import com.educative.twopointers.PairWithTargetSum;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class PairWithTargetSumTest {
 

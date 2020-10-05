@@ -1,7 +1,5 @@
 package com.leetcode.queueandstack.queueandbfs;
 
-import jdk.nashorn.internal.runtime.ScriptObject;
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;

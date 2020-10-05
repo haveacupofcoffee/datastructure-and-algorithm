@@ -3,11 +3,8 @@ package com.leetcode.linkedlist.classicproblems;
 import com.leetcode.linkedlist.common.ListNode;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Example:

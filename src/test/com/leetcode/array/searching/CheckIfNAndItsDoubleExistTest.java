@@ -2,7 +2,8 @@ package com.leetcode.array.searching;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Example 1:

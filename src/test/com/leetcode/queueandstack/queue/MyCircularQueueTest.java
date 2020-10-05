@@ -2,10 +2,6 @@ package com.leetcode.queueandstack.queue;
 
 import org.junit.Test;
 
-import javax.print.DocFlavor;
-
-import static org.junit.Assert.*;
-
 public class MyCircularQueueTest {
 
     @Test

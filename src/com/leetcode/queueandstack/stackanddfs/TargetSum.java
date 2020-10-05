@@ -1,7 +1,5 @@
 package com.leetcode.queueandstack.stackanddfs;
 
-import javax.print.DocFlavor;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**

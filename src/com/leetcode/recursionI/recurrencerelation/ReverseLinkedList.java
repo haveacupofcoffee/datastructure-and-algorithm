@@ -1,7 +1,5 @@
 package com.leetcode.recursionI.recurrencerelation;
 
-import java.util.List;
-
 /**
  * Reverse a singly linked list.
  *

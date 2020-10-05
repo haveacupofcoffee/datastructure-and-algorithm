@@ -1,8 +1,5 @@
 package com.leetcode.array.tags;
 
-import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**

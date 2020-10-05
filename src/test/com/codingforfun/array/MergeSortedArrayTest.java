@@ -1,7 +1,9 @@
 package test.com.codingforfun.array;
+
 import com.leetcode.array.MergeSortedArray;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertArrayEquals;
 /**
  *  * Input:
  *  * nums1 = [1,2,3,0,0,0], m = 3

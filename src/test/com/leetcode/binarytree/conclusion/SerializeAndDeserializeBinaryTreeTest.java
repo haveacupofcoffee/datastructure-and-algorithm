@@ -3,7 +3,7 @@ package com.leetcode.binarytree.conclusion;
 import com.leetcode.binarytree.embed.TreeNode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class SerializeAndDeserializeBinaryTreeTest {
 

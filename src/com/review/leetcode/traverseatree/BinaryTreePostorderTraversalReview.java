@@ -1,9 +1,11 @@
 package com.review.leetcode.traverseatree;
 
 import com.leetcode.binarytree.embed.TreeNode;
-import sun.awt.image.ImageWatched;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePostorderTraversalReview {
     //review on 2020-08-05

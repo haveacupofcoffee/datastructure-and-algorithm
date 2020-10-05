@@ -2,7 +2,7 @@ package com.leetcode.array.searching;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /*
  * Example 1:

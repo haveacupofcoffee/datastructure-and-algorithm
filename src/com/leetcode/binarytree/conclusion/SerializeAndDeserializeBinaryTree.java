@@ -1,9 +1,7 @@
 package com.leetcode.binarytree.conclusion;
 
 import com.leetcode.binarytree.embed.TreeNode;
-import sun.awt.image.ImageWatched;
 
-import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 

@@ -4,8 +4,6 @@ import com.educative.fastslowpointers.LinkedListCycle;
 import com.educative.fastslowpointers.ListNode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class LinkedListCycleTest {
 
     @Test

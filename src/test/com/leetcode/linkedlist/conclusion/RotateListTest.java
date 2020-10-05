@@ -3,8 +3,6 @@ package com.leetcode.linkedlist.conclusion;
 import com.leetcode.linkedlist.common.ListNode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class RotateListTest {
 
     @Test

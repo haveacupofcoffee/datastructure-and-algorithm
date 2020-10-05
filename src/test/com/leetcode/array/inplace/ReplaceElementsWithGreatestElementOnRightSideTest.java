@@ -1,9 +1,8 @@
 package com.leetcode.array.inplace;
 
-import com.leetcode.array.inplace.ReplaceElementsWithGreatestElementOnRightSide;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Example 1:

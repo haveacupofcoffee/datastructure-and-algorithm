@@ -1,11 +1,5 @@
 package com.leetcode.queueandstack.queue;
 
-import com.leetcode.recursionI.conclusion.KthSymbolInGrammar;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
  * ["MyCircularQueue","enQueue","isFull","enQueue","enQueue","isFull","enQueue","enQueue","enQueue","Front","Front","Rear",
  * "enQueue","Rear","enQueue","Rear","Front","enQueue","enQueue","Front","enQueue","enQueue","Rear",

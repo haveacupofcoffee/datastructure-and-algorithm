@@ -2,9 +2,7 @@ package com.leetcode.binarytree.solveproblemsrecursively;
 
 import com.leetcode.binarytree.embed.TreeNode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class SymmetricTree {

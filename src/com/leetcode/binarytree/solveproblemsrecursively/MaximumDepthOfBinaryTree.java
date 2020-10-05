@@ -1,7 +1,6 @@
 package com.leetcode.binarytree.solveproblemsrecursively;
 
 import com.leetcode.binarytree.embed.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 /**
  *

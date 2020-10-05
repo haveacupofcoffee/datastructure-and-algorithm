@@ -3,7 +3,7 @@ package test.com.educative.slidingwindow;
 import com.educative.slidingwindow.MaxFruitCountOf2Types;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MaxFruitCountOf2TypesTest {
     /*

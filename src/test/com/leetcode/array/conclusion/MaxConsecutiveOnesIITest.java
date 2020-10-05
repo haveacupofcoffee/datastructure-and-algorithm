@@ -1,9 +1,8 @@
 package com.leetcode.array.conclusion;
 
 import org.junit.Test;
-import org.omg.PortableInterceptor.INACTIVE;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Input: [1,0,1,1,0]

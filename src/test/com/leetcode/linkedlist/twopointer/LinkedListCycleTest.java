@@ -3,7 +3,8 @@ package com.leetcode.linkedlist.twopointer;
 import com.leetcode.linkedlist.common.ListNode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  *  * Example 1:

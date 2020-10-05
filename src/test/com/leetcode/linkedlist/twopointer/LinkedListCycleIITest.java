@@ -3,7 +3,7 @@ package com.leetcode.linkedlist.twopointer;
 import com.leetcode.linkedlist.common.ListNode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LinkedListCycleIITest {
 

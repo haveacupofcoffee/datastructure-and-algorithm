@@ -1,9 +1,8 @@
 package com.review;
 
-import com.sun.scenario.effect.Merge;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Given an array of integers nums, sort the array in ascending order.
